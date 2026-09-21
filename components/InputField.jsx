@@ -51,7 +51,7 @@ export default function InputField({
 
 const styles = StyleSheet.create({
   container: {
-    marginBottom: 18,
+    marginBottom: 0,
   },
 
   label: {

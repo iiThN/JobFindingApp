@@ -4,6 +4,7 @@ import {
   Text,
   TouchableOpacity,
   View,
+  Image,
 } from "react-native";
 
 import { router } from "expo-router";
@@ -40,6 +41,10 @@ export default function Login() {
 
   return (
     <SafeAreaView style={styles.container}>
+      <Image 
+        source={require('../assets/images/inJob-round.png')} 
+        style={styles.logo} 
+      />
       <View style={styles.card}>
 
         <Text style={styles.title}>
@@ -111,15 +116,12 @@ export default function Login() {
           </Text>
 
           <TouchableOpacity
-            onPress={() => router.push("/register")}
-          >
+            onPress={() => router.push("/selectRole")}>
             <Text style={styles.registerLink}>
               Register
             </Text>
           </TouchableOpacity>
-
         </View>
-
       </View>
     </SafeAreaView>
   );

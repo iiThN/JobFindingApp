@@ -6,6 +6,8 @@ import {
   View,
 } from "react-native";
 
+import { useLocalSearchParams } from 'expo-router';
+
 import { router } from "expo-router";
 import { SafeAreaView } from "react-native-safe-area-context";
 
@@ -15,6 +17,9 @@ import styles from "../components/styles";
 import { validateRegister } from "../validations/authValidation";
 
 export default function Register() {
+
+  const { role } = useLocalSearchParams();
+
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -37,12 +42,18 @@ export default function Register() {
 
     setError("");
 
-    Alert.alert("Success", "Registration successful!", [
-      {
-        text: "OK",
-        onPress: () => router.replace("/login"),
-      },
-    ]);
+    {role === 'Job Seeker' && (
+      Alert.alert("Success", "Registration successful!", [
+            {
+              text: "OK",
+              onPress: () => router.replace("/login"),
+            },
+          ])
+    )}
+
+    {role === 'Employer' && (
+      router.push('/getVerified')
+    )}
   };
 
   return (
@@ -54,7 +65,10 @@ export default function Register() {
         </Text>
 
         <Text style={styles.subtitle}>
-          Register an account to get started
+          Registering as
+          {role === 'Job Seeker' && (<Text> a</Text>)}
+          {role === 'Employer' && (<Text> an</Text>)}
+          <Text style={{color: '#1C2834', fontWeight: 'bold'}}> {role}</Text>
         </Text>
 
         <View style={styles.form}>
@@ -107,14 +121,26 @@ export default function Register() {
             </Text>
           )}
 
-          <TouchableOpacity
+
+          {role === 'Job Seeker' && (
+            <TouchableOpacity
             style={styles.registerButton}
-            onPress={handleRegister}
-          >
+            onPress={handleRegister}>
             <Text style={styles.registerButtonText}>
               Register
             </Text>
           </TouchableOpacity>
+          )}
+
+          {role === 'Employer' && (
+            <TouchableOpacity
+              style={styles.registerButton}
+              onPress={handleRegister}>
+              <Text style={styles.registerButtonText}>
+                Get Verified
+              </Text>
+          </TouchableOpacity>
+          )}
 
         </View>
 

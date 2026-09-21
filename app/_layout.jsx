@@ -11,7 +11,27 @@ export default function RootLayout() {
       />
 
       <Stack.Screen
+        name="selectRole"
+        options={{
+          headerShown: false,
+        }}
+      />
+
+      <Stack.Screen
         name="register"
+        options={{
+          headerShown: true,
+          title: '',
+          headerStyle: {
+            backgroundColor: '#F4F6F8',
+          },
+          headerShadowVisible: false,
+          headerTransparent: true,
+        }}
+      />
+
+      <Stack.Screen
+        name="getVerified"
         options={{
           headerShown: false,
         }}

@@ -12,6 +12,15 @@ const styles = StyleSheet.create({
   padding: 25,
   },
 
+  logo: {
+    position: 'absolute',
+    top: 60,
+    alignSelf: 'center', 
+    width: 60,
+    height: 60,
+    resizeMode: 'contain',
+  },
+
   card: {
     backgroundColor: "#FFFFFF",
     borderRadius: 20,
@@ -29,119 +38,128 @@ const styles = StyleSheet.create({
   },
 
   cardTitle: {
-  fontSize: 20,
-  fontWeight: "bold",
-  marginBottom: 8,
-  },
-
-  cardText: {
-    color: "#777",
-    lineHeight: 22,
-  },
-
-  title: {
-    fontSize: 28,
+    fontSize: 20,
     fontWeight: "bold",
-    color: "#222222",
-    textAlign: "center",
     marginBottom: 8,
   },
 
-  subtitle: {
-    fontSize: 14,
-    color: "#777777",
-    textAlign: "center",
-    marginBottom: 30,
-  },
+cardText: {
+  color: "#777",
+  lineHeight: 22,
+},
 
-  form: {
-    width: "100%",
-  },
+title: {
+  fontSize: 28,
+  fontWeight: "bold",
+  color: "#222222",
+  textAlign: "center",
+  marginBottom: 8,
+},
 
-  forgotButton: {
-    alignSelf: "flex-end",
-    marginTop: -5,
-    marginBottom: 20,
-  },
+subtitle: {
+  fontSize: 14,
+  color: "#777777",
+  textAlign: "center",
+  marginBottom: 30,
+},
 
-  forgotText: {
-    color: "#2563EB",
-    fontSize: 14,
-    fontWeight: "600",
-  },
+form: {
+  flexDirection: 'column',
+  width: "100%",
+  gap: 20,
+},
 
-  errorText: {
-    color: "#DC2626",
-    fontSize: 13,
-    fontWeight: "500",
-    marginBottom: 10,
-    marginTop: -2,
-    lineHeight: 18,
-  },
+forgotButton: {
+  alignSelf: "flex-end",
+},
 
-  loginButton: {
-    height: 52,
-    backgroundColor: "#2563EB",
-    borderRadius: 10,
-    justifyContent: "center",
-    alignItems: "center",
-  },
+forgotText: {
+  color: "#2563EB",
+  fontSize: 14,
+  fontWeight: "600",
+},
 
-  loginButtonText: {
-    color: "#FFFFFF",
-    fontSize: 16,
-    fontWeight: "bold",
-  },
+errorText: {
+  color: "#DC2626",
+  fontSize: 13,
+  fontWeight: "500",
+  marginBottom: 10,
+  marginTop: -2,
+  lineHeight: 18,
+},
 
-  registerButton: {
-    height: 52,
-    backgroundColor: "#2563EB",
-    borderRadius: 10,
-    justifyContent: "center",
-    alignItems: "center",
-  },
+loginButton: {
+  height: 52,
+  backgroundColor: "#2563EB",
+  borderRadius: 10,
+  justifyContent: "center",
+  alignItems: "center",
+},
 
-  registerButtonText: {
-    color: "#FFFFFF",
-    fontSize: 16,
-    fontWeight: "bold",
-  },
+loginButtonText: {
+  color: "#FFFFFF",
+  fontSize: 16,
+  fontWeight: "bold",
+},
 
-  registerContainer: {
-    flexDirection: "row",
-    justifyContent: "center",
-    marginTop: 25,
-  },
+registerButton: {
+  height: 52,
+  backgroundColor: "#2563EB",
+  borderRadius: 10,
+  justifyContent: "center",
+  alignItems: "center",
+},
 
-  registerText: {
-    color: "#777777",
-    fontSize: 14,
-  },
+registerButtonText: {
+  color: "#FFFFFF",
+  fontSize: 16,
+  fontWeight: "bold",
+},
 
-  registerLink: {
-    color: "#2563EB",
-    fontSize: 14,
-    fontWeight: "bold",
-    marginLeft: 5,
-  },
+registerContainer: {
+  flexDirection: "row",
+  justifyContent: "center",
+  marginTop: 20,
+},
 
-  loginContainer: {
-    flexDirection: "row",
-    justifyContent: "center",
-    marginTop: 25,
-  },
+registerText: {
+  color: "#777777",
+  fontSize: 14,
+},
 
-  loginText: {
-    color: "#777777",
-    fontSize: 14,
-  },
+registerLink: {
+  color: "#2563EB",
+  fontSize: 14,
+  fontWeight: "bold",
+  marginLeft: 5,
+},
 
-  loginLink: {
-    color: "#2563EB",
-    fontSize: 14,
-    fontWeight: "bold",
-    marginLeft: 5,
-  },
+loginContainer: {
+  flexDirection: "row",
+  justifyContent: "center",
+  marginTop: 25,
+},
+
+loginText: {
+  color: "#777777",
+  fontSize: 14,
+},
+
+loginLink: {
+  color: "#2563EB",
+  fontSize: 14,
+  fontWeight: "bold",
+  marginLeft: 5,
+},
+
+roleSelection: {
+  flexDiection: 'column',
+  justifyContent: "center",
+  alignItems: 'center',
+  backgroundColorl: '#ffffff',
+  gap:20,
+},
+
 });
 
 export default styles;
