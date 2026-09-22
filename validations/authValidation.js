@@ -38,3 +38,12 @@ export function validateRegister(
 
   return "";
 }
+
+export function validateGetVerified(
+  companyName, companyLoc
+) {
+  if (!companyName || !companyLoc){
+    return "Please fill all the requirements"
+  }
+  
+}

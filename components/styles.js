@@ -5,7 +5,7 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: "#F4F6F8",
     justifyContent: "center",
-    paddingHorizontal: 20,
+
   },
   
   content: {
@@ -25,6 +25,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#FFFFFF",
     borderRadius: 20,
     padding: 25,
+    margin: 20,
 
     shadowColor: "#000",
     shadowOffset: {
@@ -49,7 +50,7 @@ cardText: {
 },
 
 title: {
-  fontSize: 28,
+  fontSize: 24,
   fontWeight: "bold",
   color: "#222222",
   textAlign: "center",
@@ -66,7 +67,7 @@ subtitle: {
 form: {
   flexDirection: 'column',
   width: "100%",
-  gap: 20,
+  gap: 16,
 },
 
 forgotButton: {
@@ -89,7 +90,7 @@ errorText: {
 },
 
 loginButton: {
-  height: 52,
+  height: 46,
   backgroundColor: "#2563EB",
   borderRadius: 10,
   justifyContent: "center",
@@ -103,7 +104,7 @@ loginButtonText: {
 },
 
 registerButton: {
-  height: 52,
+  height: 46,
   backgroundColor: "#2563EB",
   borderRadius: 10,
   justifyContent: "center",

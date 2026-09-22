@@ -22,11 +22,11 @@ export default function SelectRole(){
       <View style={styles.card}>
 
         <Text style={styles.title}>
-          What are You?
+          Choose Your Role
         </Text>
 
         <Text style={styles.subtitle}>
-          Select your role before creating an account
+          Select role before creating an account
         </Text>
 
         <View style={styles.roleSelection}>
