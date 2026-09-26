@@ -9,10 +9,13 @@ import {
 import { SafeAreaView } from "react-native-safe-area-context";
 import { router, useLocalSearchParams } from 'expo-router';
 
+import * as DocumentPicker from 'expo-document-picker';
+import { MaterialCommunityIcons } from '@expo/vector-icons';
+
 import InputField from "../components/InputField";
 import styles from "../components/styles";
 
-import { validateGetVerified, validateRegister } from "../validations/authValidation";
+import { validateGetVerified } from "../validations/authValidation";
 import { useState } from "react";
 
 export default function GetVerified() {
@@ -21,11 +24,34 @@ export default function GetVerified() {
   const [ companyName, setCompanyName ] = useState("")
   const [ branch, setBranch ] = useState("")
   const [ companyLoc, setCompanyLoc ] = useState("")
+
+  const [selectedFiles, setSelectedFiles] = useState([]);
  
   const [error, setError] = useState("");
 
+  const handlePickDocuments = async () => {
+    try {
+      const result = await DocumentPicker.getDocumentAsync({
+        type: ["application/pdf", "image/*"],
+        multiple: true,
+        copyToCacheDirectory: true,
+      });
+
+      if (!result.canceled && result.assets) {
+        setSelectedFiles((prevFiles) => [...prevFiles, ...result.assets]);
+        setError("");
+      }
+    } catch (error) { 
+      console.log("Error picking file:", error);
+    }
+  };
+
+  const handleRemoveFile = (indexToRemove) => {
+    setSelectedFiles(selectedFiles.filter((_, index) => index !== indexToRemove));
+  };
+
   const handleRegisterEmployer = () => {
-  const validationError = validateGetVerified(companyName, companyLoc,);
+    const validationError = validateGetVerified(companyName, companyLoc, selectedFiles);
     if (validationError) {
       setError(validationError);
       return;
@@ -90,6 +116,27 @@ export default function GetVerified() {
             }}
           />
 
+          <View style={styles.uploadContainer}>
+            <Text style={styles.uploadLabel}>Business Requirements & Clearances</Text>
+            
+            <TouchableOpacity style={styles.uploadBox} onPress={handlePickDocuments}>
+              <MaterialCommunityIcons name="file-multiple-outline" size={28} color="#2563EB" />
+              <Text style={styles.uploadText}>
+                Tap to upload PDFs or Images
+              </Text>
+            </TouchableOpacity>
+
+            {selectedFiles.map((file, index) => (
+              <View key={index} style={styles.fileItem}>
+                <MaterialCommunityIcons name="file-document-outline" size={20} color="#2563EB" />
+                <Text style={styles.fileName} numberOfLines={1}>{file.name}</Text>
+                <TouchableOpacity onPress={() => handleRemoveFile(index)}>
+                  <MaterialCommunityIcons name="close-circle" size={20} color="#EF4444" />
+                </TouchableOpacity>
+              </View>
+            ))}
+          </View>
+
           {error === "" ? null : (
             <Text style={styles.errorText}>
               {error}
@@ -104,7 +151,6 @@ export default function GetVerified() {
             </Text>
           </TouchableOpacity>
         </View>
-          
       </View>
     </ScrollView>
     </KeyboardAvoidingView>

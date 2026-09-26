@@ -84,8 +84,6 @@ errorText: {
   color: "#DC2626",
   fontSize: 13,
   fontWeight: "500",
-  marginBottom: 10,
-  marginTop: -2,
   lineHeight: 18,
 },
 
@@ -161,6 +159,46 @@ roleSelection: {
   gap:20,
 },
 
+uploadContainer: {
+
+},
+uploadLabel: {
+  fontSize: 12,
+  fontWeight: "600",
+  color: "#333333",
+  marginBottom: 6,
+},
+uploadBox: {
+  borderWidth: 1.5,
+  borderColor: '#CBD5E1',
+  borderStyle: 'dashed',
+  borderRadius: 10,
+  padding: 16,
+  alignItems: 'center',
+  backgroundColor: '#F8FAFC',
+  flexDirection: 'row',
+},
+uploadText: {
+  marginLeft: 8,
+  fontSize: 14,
+  color: '#64748B',
+  flex:1
+},
+fileItem: {
+  flexDirection: 'row',
+  alignItems: 'center',
+  backgroundColor: '#F1F5F9',
+  padding: 10,
+  borderRadius: 8,
+  marginTop: 8,
+  justifyContent: 'space-between',
+},
+fileName: {
+  flex: 1,
+  fontSize: 12,
+  color: '#334155',
+  marginHorizontal: 8,
+},
 });
 
 export default styles;

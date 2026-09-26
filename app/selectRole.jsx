@@ -12,8 +12,6 @@ import { SafeAreaView } from "react-native-safe-area-context";
 
 import styles from "../components/styles";
 
-import { validateRegister } from "../validations/authValidation";
-
 export default function SelectRole(){
 
   const [role, setRole] = useState("");

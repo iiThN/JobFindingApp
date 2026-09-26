@@ -40,10 +40,14 @@ export function validateRegister(
 }
 
 export function validateGetVerified(
-  companyName, companyLoc
+  companyName, companyLoc, selectedFiles
 ) {
   if (!companyName || !companyLoc){
     return "Please fill all the requirements"
+  }
+
+  if (selectedFiles.length === 0){
+    return "Please upload at least one verification document"
   }
   
 }

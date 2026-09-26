@@ -3,7 +3,6 @@ import { Stack } from "expo-router";
 export default function RootLayout() {
   return (
     <Stack>
-    
       <Stack.Screen
         name="login"
         options={{
@@ -37,7 +36,7 @@ export default function RootLayout() {
           headerShown: true,
           title: '',
           headerStyle: {
-            backgroundColor: '#F4F6F8',
+            backgroundColor: 'rgba(244, 246, 248, 0.8)',
           },
           headerShadowVisible: false,
           headerTransparent: true,

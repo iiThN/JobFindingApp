@@ -3,7 +3,7 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import BottomNav, { TopNav } from '../../components/Navigations';
 import styles from "../../components/stylesIn";
 
-export default function HomePage() {
+export default function JobApps() {
   return (
     <SafeAreaView style={styles.container}>
       <TopNav/>
