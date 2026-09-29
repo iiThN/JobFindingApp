@@ -5,6 +5,8 @@ import {
   TouchableOpacity,
   View,
   Image,
+  KeyboardAvoidingView,
+  ScrollView
 } from "react-native";
 
 import { router } from "expo-router";
@@ -41,6 +43,13 @@ export default function Login() {
 
   return (
     <SafeAreaView style={styles.container}>
+    <KeyboardAvoidingView behavior="padding"
+      style={{ flex: 1 }}
+    >
+    <ScrollView
+      contentContainerStyle={{ flexGrow: 1, justifyContent: 'center' }}
+      showsVerticalScrollIndicator={false}
+    >
       <Image 
         source={require('../assets/images/inJob-round.png')} 
         style={styles.logo} 
@@ -48,7 +57,7 @@ export default function Login() {
       <View style={styles.card}>
 
         <Text style={styles.title}>
-          Welcome Back!
+          Welcome Back
         </Text>
 
         <Text style={styles.subtitle}>
@@ -123,6 +132,8 @@ export default function Login() {
           </TouchableOpacity>
         </View>
       </View>
+    </ScrollView>
+    </KeyboardAvoidingView>
     </SafeAreaView>
   );
 }

@@ -12,8 +12,6 @@ import { SafeAreaView } from "react-native-safe-area-context";
 
 import styles from "../components/styles";
 
-import { validateRegister } from "../validations/authValidation";
-
 export default function SelectRole(){
 
   const [role, setRole] = useState("");
@@ -22,11 +20,11 @@ export default function SelectRole(){
       <View style={styles.card}>
 
         <Text style={styles.title}>
-          What are You?
+          Choose Your Role
         </Text>
 
         <Text style={styles.subtitle}>
-          Select your role before creating an account
+          Select role before creating an account
         </Text>
 
         <View style={styles.roleSelection}>

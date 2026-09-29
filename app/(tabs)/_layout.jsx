@@ -5,7 +5,15 @@ export default function TabsLayout() {
     <Stack
       screenOptions={{
         headerShown: false,
+        animation: 'fade',
       }}
-    />
+    >
+
+      <Stack.Screen name="index"/>
+      <Stack.Screen name="findJob"/>
+      <Stack.Screen name="jobApps"/>
+      <Stack.Screen name="profile"/>
+  
+    </Stack>
   );
 }

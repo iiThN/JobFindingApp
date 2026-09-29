@@ -1,28 +1,159 @@
 import {
   Text,
   View,
+  TouchableOpacity,
+  KeyboardAvoidingView,
+  ScrollView,
+  Alert
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { useLocalSearchParams } from 'expo-router';
+import { router, useLocalSearchParams } from 'expo-router';
+
+import * as DocumentPicker from 'expo-document-picker';
+import { MaterialCommunityIcons } from '@expo/vector-icons';
 
 import InputField from "../components/InputField";
 import styles from "../components/styles";
 
-import { validateRegister } from "../validations/authValidation";
+import { validateGetVerified } from "../validations/authValidation";
+import { useState } from "react";
 
-export default function Home() {
+export default function GetVerified() {
+  const { role, name, email, password } = useLocalSearchParams();
+
+  const [ companyName, setCompanyName ] = useState("")
+  const [ branch, setBranch ] = useState("")
+  const [ companyLoc, setCompanyLoc ] = useState("")
+
+  const [selectedFiles, setSelectedFiles] = useState([]);
+ 
+  const [error, setError] = useState("");
+
+  const handlePickDocuments = async () => {
+    try {
+      const result = await DocumentPicker.getDocumentAsync({
+        type: ["application/pdf", "image/*"],
+        multiple: true,
+        copyToCacheDirectory: true,
+      });
+
+      if (!result.canceled && result.assets) {
+        setSelectedFiles((prevFiles) => [...prevFiles, ...result.assets]);
+        setError("");
+      }
+    } catch (error) { 
+      console.log("Error picking file:", error);
+    }
+  };
+
+  const handleRemoveFile = (indexToRemove) => {
+    setSelectedFiles(selectedFiles.filter((_, index) => index !== indexToRemove));
+  };
+
+  const handleRegisterEmployer = () => {
+    const validationError = validateGetVerified(companyName, companyLoc, selectedFiles);
+    if (validationError) {
+      setError(validationError);
+      return;
+    }
+
+    setError("");
+
+    Alert.alert("Account Ceated Successfully", "Registration successful, but your verification request is still in process. We'll get back to you soon.", [
+      {
+        text: "OK",
+        onPress: () => router.replace("/login"),
+      },
+    ]);
+  };
+
   return (
     <SafeAreaView style={styles.container}>
-      <View style={styles.content}>
+    <KeyboardAvoidingView behavior="padding"
+      style={{ flex: 1 }}
+    >
+    <ScrollView
+      contentContainerStyle={{ flexGrow: 1, justifyContent: 'center' }}
+      showsVerticalScrollIndicator={false}
+    >
 
+      <View style={styles.card}>
         <Text style={styles.title}>
-          Wala pako Nahuman Boss, Pahuway sa ko
+          Verify Employer Account
         </Text>
-
         <Text style={styles.subtitle}>
-          GGS
+          Submit your business details and compliance documents for verification
         </Text>
+          
+        <View style={styles.form}>
+          <InputField
+            label="Company Name"
+            placeholder="Enter your company Name"
+            value={companyName}
+            onChangeText={(text) => {
+              setCompanyName(text);
+              setError("");
+            }}
+          />
+
+          <InputField
+            label="Branch"
+            placeholder="Enter branch, leave blank if none"
+            value={branch}
+            onChangeText={(text) => {
+              setBranch(text);
+              setError("");
+            }}
+          />
+
+          <InputField
+            label="Company Location"
+            placeholder="Complete address of the company"
+            value={companyLoc}
+            onChangeText={(text) => {
+              setCompanyLoc(text);
+              setError("");
+            }}
+          />
+
+          <View style={styles.uploadContainer}>
+            <Text style={styles.uploadLabel}>Business Requirements & Clearances</Text>
+            
+            <TouchableOpacity style={styles.uploadBox} onPress={handlePickDocuments}>
+              <MaterialCommunityIcons name="file-multiple-outline" size={28} color="#2563EB" />
+              <Text style={styles.uploadText}>
+                Tap to upload PDFs or Images
+              </Text>
+            </TouchableOpacity>
+
+            {selectedFiles.map((file, index) => (
+              <View key={index} style={styles.fileItem}>
+                <MaterialCommunityIcons name="file-document-outline" size={20} color="#2563EB" />
+                <Text style={styles.fileName} numberOfLines={1}>{file.name}</Text>
+                <TouchableOpacity onPress={() => handleRemoveFile(index)}>
+                  <MaterialCommunityIcons name="close-circle" size={20} color="#EF4444" />
+                </TouchableOpacity>
+              </View>
+            ))}
+          </View>
+
+          {error === "" ? null : (
+            <Text style={styles.errorText}>
+              {error}
+            </Text>
+          )}
+
+          <TouchableOpacity
+            style={styles.registerButton}
+            onPress={handleRegisterEmployer}>
+            <Text style={styles.registerButtonText}>
+              Register
+            </Text>
+          </TouchableOpacity>
+        </View>
       </View>
+    </ScrollView>
+    </KeyboardAvoidingView>
     </SafeAreaView>
   );
 }

@@ -9,7 +9,7 @@ export default function RootLayout() {
           headerShown: false,
         }}
       />
-
+      
       <Stack.Screen
         name="selectRole"
         options={{
@@ -23,7 +23,7 @@ export default function RootLayout() {
           headerShown: true,
           title: '',
           headerStyle: {
-            backgroundColor: '#F4F6F8',
+            backgroundColor: '#f4f6f8c7',
           },
           headerShadowVisible: false,
           headerTransparent: true,
@@ -33,7 +33,13 @@ export default function RootLayout() {
       <Stack.Screen
         name="getVerified"
         options={{
-          headerShown: false,
+          headerShown: true,
+          title: '',
+          headerStyle: {
+            backgroundColor: 'rgba(244, 246, 248, 0.8)',
+          },
+          headerShadowVisible: false,
+          headerTransparent: true,
         }}
       />
 
