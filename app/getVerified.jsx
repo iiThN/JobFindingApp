@@ -1,22 +1,23 @@
+import { router, useLocalSearchParams } from 'expo-router';
 import {
-  Text,
-  View,
-  TouchableOpacity,
-  KeyboardAvoidingView,
-  ScrollView,
-  Alert
+    Alert,
+    KeyboardAvoidingView,
+    ScrollView,
+    Text,
+    TouchableOpacity,
+    View
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { router, useLocalSearchParams } from 'expo-router';
 
-import * as DocumentPicker from 'expo-document-picker';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
+import * as DocumentPicker from 'expo-document-picker';
 
 import InputField from "../components/InputField";
 import styles from "../components/styles";
+import FormButton from '../components/Button';
 
-import { validateGetVerified } from "../validations/authValidation";
 import { useState } from "react";
+import { validateGetVerified } from "../validations/authValidation";
 
 export default function GetVerified() {
   const { role, name, email, password } = useLocalSearchParams();
@@ -120,7 +121,7 @@ export default function GetVerified() {
             <Text style={styles.uploadLabel}>Business Requirements & Clearances</Text>
             
             <TouchableOpacity style={styles.uploadBox} onPress={handlePickDocuments}>
-              <MaterialCommunityIcons name="file-multiple-outline" size={28} color="#2563EB" />
+              <MaterialCommunityIcons name="file-multiple-outline" size={28} color="#2623D3" />
               <Text style={styles.uploadText}>
                 Tap to upload PDFs or Images
               </Text>
@@ -128,7 +129,7 @@ export default function GetVerified() {
 
             {selectedFiles.map((file, index) => (
               <View key={index} style={styles.fileItem}>
-                <MaterialCommunityIcons name="file-document-outline" size={20} color="#2563EB" />
+                <MaterialCommunityIcons name="file-document-outline" size={20} color="#2623D3" />
                 <Text style={styles.fileName} numberOfLines={1}>{file.name}</Text>
                 <TouchableOpacity onPress={() => handleRemoveFile(index)}>
                   <MaterialCommunityIcons name="close-circle" size={20} color="#EF4444" />
@@ -143,13 +144,10 @@ export default function GetVerified() {
             </Text>
           )}
 
-          <TouchableOpacity
-            style={styles.registerButton}
-            onPress={handleRegisterEmployer}>
-            <Text style={styles.registerButtonText}>
-              Register
-            </Text>
-          </TouchableOpacity>
+          <FormButton
+            btnTitle="Register"
+            onPress={handleRegisterEmployer}
+          />
         </View>
       </View>
     </ScrollView>

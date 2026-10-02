@@ -14,6 +14,7 @@ import { SafeAreaView } from "react-native-safe-area-context";
 
 import InputField from "../components/InputField";
 import styles from "../components/styles";
+import FormButton from "../components/Button";
 
 import { validateLogin } from "../validations/authValidation";
 
@@ -51,8 +52,8 @@ export default function Login() {
       showsVerticalScrollIndicator={false}
     >
       <Image 
-        source={require('../assets/images/inJob-round.png')} 
-        style={styles.logo} 
+        source={require('../assets/images/inJob-horizontal-dark.png')} 
+        style={styles.textLogo} 
       />
       <View style={styles.card}>
 
@@ -107,14 +108,10 @@ export default function Login() {
             </Text>
           )}
 
-          <TouchableOpacity
-            style={styles.loginButton}
+          <FormButton
+            btnTitle="Login"
             onPress={handleLogin}
-          >
-            <Text style={styles.loginButtonText}>
-              Login
-            </Text>
-          </TouchableOpacity>
+          />
 
         </View>
 

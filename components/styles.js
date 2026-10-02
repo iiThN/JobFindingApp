@@ -12,11 +12,10 @@ const styles = StyleSheet.create({
   padding: 25,
   },
 
-  logo: {
+  textLogo: {
     position: 'absolute',
-    top: 60,
+    top: 80,
     alignSelf: 'center', 
-    width: 60,
     height: 60,
     resizeMode: 'contain',
   },
@@ -35,7 +34,7 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.08,
     shadowRadius: 10,
 
-    elevation: 4,
+    elevation:  4,
   },
 
   cardTitle: {
@@ -75,7 +74,7 @@ forgotButton: {
 },
 
 forgotText: {
-  color: "#2563EB",
+  color: "#2623D3",
   fontSize: 14,
   fontWeight: "600",
 },
@@ -85,34 +84,6 @@ errorText: {
   fontSize: 13,
   fontWeight: "500",
   lineHeight: 18,
-},
-
-loginButton: {
-  height: 46,
-  backgroundColor: "#2563EB",
-  borderRadius: 10,
-  justifyContent: "center",
-  alignItems: "center",
-},
-
-loginButtonText: {
-  color: "#FFFFFF",
-  fontSize: 16,
-  fontWeight: "bold",
-},
-
-registerButton: {
-  height: 46,
-  backgroundColor: "#2563EB",
-  borderRadius: 10,
-  justifyContent: "center",
-  alignItems: "center",
-},
-
-registerButtonText: {
-  color: "#FFFFFF",
-  fontSize: 16,
-  fontWeight: "bold",
 },
 
 registerContainer: {
@@ -127,7 +98,7 @@ registerText: {
 },
 
 registerLink: {
-  color: "#2563EB",
+  color: "#2623D3",
   fontSize: 14,
   fontWeight: "bold",
   marginLeft: 5,
@@ -145,7 +116,7 @@ loginText: {
 },
 
 loginLink: {
-  color: "#2563EB",
+  color: "#2623D3",
   fontSize: 14,
   fontWeight: "bold",
   marginLeft: 5,

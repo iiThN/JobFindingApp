@@ -16,6 +16,7 @@ import { SafeAreaView } from "react-native-safe-area-context";
 
 import InputField from "../components/InputField";
 import styles from "../components/styles";
+import FormButton from "../components/Button";
 
 import { validateRegister } from "../validations/authValidation";
 
@@ -184,23 +185,17 @@ export default function Register() {
 
 
           {role === 'Job Seeker' && (
-            <TouchableOpacity
-            style={styles.registerButton}
-            onPress={handleRegister}>
-            <Text style={styles.registerButtonText}>
-              Register
-            </Text>
-          </TouchableOpacity>
+            <FormButton
+              btnTitle="Register"
+              onPress={handleRegister}
+            />
           )}
 
           {role === 'Employer' && (
-            <TouchableOpacity
-              style={styles.registerButton}
-              onPress={handleRegister}>
-              <Text style={styles.registerButtonText}>
-                Get Verified
-              </Text>
-          </TouchableOpacity>
+            <FormButton
+            btnTitle="Get Verified"
+            onPress={handleRegister}
+          />
           )}
 
         </View>

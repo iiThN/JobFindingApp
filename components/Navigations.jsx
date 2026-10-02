@@ -57,7 +57,7 @@ export default function BottomNav() {
           <TouchableOpacity
             key={index}
             style={styles.botNavItem}
-            activeOpacity={0.7}
+            activeOpacity={0.5}
             onPress={() => router.navigate(item.route)}
           >
             <IconComponent
@@ -101,7 +101,7 @@ export function TopNav() {
           <TouchableOpacity
             key={index}
             style={styles.topNavItem}
-            activeOpacity={0.7}
+            activeOpacity={0.5}
             onPress={() => router.navigate(item.route)}
           >
             <IconComponent
