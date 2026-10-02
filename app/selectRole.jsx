@@ -1,11 +1,10 @@
 import { useState } from "react";
-import RoleCard from "../components/RoleCard";
 import {
-  Alert,
   Text,
   TouchableOpacity,
-  View,
+  View
 } from "react-native";
+import RoleCard from "../components/RoleCard";
 
 import { router } from "expo-router";
 import { SafeAreaView } from "react-native-safe-area-context";
@@ -30,7 +29,7 @@ export default function SelectRole(){
         <View style={styles.roleSelection}>
           <RoleCard
             iconName="briefcase-search"
-            iconSize={26}
+            iconSize={28}
             title="Job Seeker"
             subtitle="Browse for Jobs and Apply"
             onPress={() => router.push({
@@ -41,7 +40,7 @@ export default function SelectRole(){
 
           <RoleCard
             iconName="account-tie"
-            iconSize={30}
+            iconSize={34}
             title="Employer"
             subtitle="Post Job Openings and accept Applicants"
             onPress={() => router.push({

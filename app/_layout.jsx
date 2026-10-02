@@ -3,6 +3,20 @@ import { Stack } from "expo-router";
 export default function RootLayout() {
   return (
     <Stack>
+
+<Stack.Screen
+        name="getVerified"
+        options={{
+          headerShown: true,
+          title: '',
+          headerStyle: {
+            backgroundColor: 'rgba(244, 246, 248, 0.8)',
+          },
+          headerShadowVisible: false,
+          headerTransparent: true,
+        }}
+      />
+
       <Stack.Screen
         name="login"
         options={{
@@ -24,19 +38,6 @@ export default function RootLayout() {
           title: '',
           headerStyle: {
             backgroundColor: '#f4f6f8c7',
-          },
-          headerShadowVisible: false,
-          headerTransparent: true,
-        }}
-      />
-
-      <Stack.Screen
-        name="getVerified"
-        options={{
-          headerShown: true,
-          title: '',
-          headerStyle: {
-            backgroundColor: 'rgba(244, 246, 248, 0.8)',
           },
           headerShadowVisible: false,
           headerTransparent: true,
