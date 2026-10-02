@@ -12,11 +12,11 @@ const styles = StyleSheet.create({
   padding: 25,
   },
 
-  textLogo: {
+  inJob_logo: {
     position: 'absolute',
     top: 80,
     alignSelf: 'center', 
-    height: 60,
+    height: 32,
     resizeMode: 'contain',
   },
 
@@ -51,7 +51,7 @@ cardText: {
 title: {
   fontSize: 24,
   fontWeight: "bold",
-  color: "#222222",
+  color: "#111827",
   textAlign: "center",
   marginBottom: 8,
 },
@@ -136,7 +136,7 @@ uploadContainer: {
 uploadLabel: {
   fontSize: 12,
   fontWeight: "600",
-  color: "#333333",
+  color: "#111827",
   marginBottom: 6,
 },
 uploadBox: {

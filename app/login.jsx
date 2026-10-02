@@ -1,20 +1,20 @@
 import { useState } from "react";
 import {
   Alert,
-  Text,
-  TouchableOpacity,
-  View,
   Image,
   KeyboardAvoidingView,
-  ScrollView
+  ScrollView,
+  Text,
+  TouchableOpacity,
+  View
 } from "react-native";
 
 import { router } from "expo-router";
 import { SafeAreaView } from "react-native-safe-area-context";
 
+import FormButton from "../components/Button";
 import InputField from "../components/InputField";
 import styles from "../components/styles";
-import FormButton from "../components/Button";
 
 import { validateLogin } from "../validations/authValidation";
 
@@ -53,7 +53,7 @@ export default function Login() {
     >
       <Image 
         source={require('../assets/images/inJob-horizontal-dark.png')} 
-        style={styles.textLogo} 
+        style={styles.inJob_logo} 
       />
       <View style={styles.card}>
 

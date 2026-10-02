@@ -3,21 +3,18 @@ import { Stack } from "expo-router";
 export default function RootLayout() {
   return (
     <Stack>
-
       <Stack.Screen
         name="login"
         options={{
           headerShown: false,
         }}
       />
-      
       <Stack.Screen
         name="selectRole"
         options={{
           headerShown: false,
         }}
       />
-
       <Stack.Screen
         name="register"
         options={{
@@ -30,7 +27,6 @@ export default function RootLayout() {
           headerTransparent: true,
         }}
       />
-
       <Stack.Screen
         name="getVerified"
         options={{
@@ -43,12 +39,19 @@ export default function RootLayout() {
           headerTransparent: true,
         }}
       />
-
       <Stack.Screen
         name="(tabs)"
         options={{
           headerShown: false,
         }}
+      />
+      <Stack.Screen 
+        name="drawer/menu" 
+        options={{
+          presentation: 'transparentModal',
+          animation: 'fade',
+          headerShown: false,
+        }} 
       />
     </Stack>
   );
