@@ -7,8 +7,9 @@ export default function TabLayout() {
     <Tabs
       screenOptions={{
         headerShown: false,
+        statusBarStyle: 'light',
         tabBarActiveTintColor: '#2623d3',
-        tabBarInactiveTintColor: '#9098a3',
+        tabBarInactiveTintColor: '#9098a3',        
         tabBarButton: (props) => (
           <TouchableOpacity
             {...props}

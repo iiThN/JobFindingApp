@@ -2,7 +2,11 @@ import { Stack } from "expo-router";
 
 export default function RootLayout() {
   return (
-    <Stack>
+    <Stack
+      screenOptions={{
+        statusBarStyle: 'dark', 
+      }}
+    >
       <Stack.Screen
         name="login"
         options={{
@@ -42,12 +46,15 @@ export default function RootLayout() {
       <Stack.Screen
         name="(tabs)"
         options={{
+          statusBarStyle: 'light',
+          animation: 'fade',
           headerShown: false,
         }}
       />
       <Stack.Screen 
         name="drawer/menu" 
         options={{
+          statusBarStyle: 'light',
           presentation: 'transparentModal',
           animation: 'fade',
           headerShown: false,

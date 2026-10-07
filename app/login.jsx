@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useState, useEffect} from "react";
 import {
   Alert,
   Image,
@@ -6,7 +6,8 @@ import {
   ScrollView,
   Text,
   TouchableOpacity,
-  View
+  View,
+  BackHandler
 } from "react-native";
 
 import { router } from "expo-router";
@@ -33,6 +34,8 @@ export default function Login() {
     }
 
     setError("");
+    setEmail("");
+    setPassword("");
 
     Alert.alert("Success", "Login successful!", [
       {
@@ -41,6 +44,21 @@ export default function Login() {
       },
     ]);
   };
+
+  // useEffect(() => {
+
+  //   const backAction = () => {
+
+  //     return true; 
+  //   };
+
+  //   const backHandler = BackHandler.addEventListener(
+  //     'hardwareBackPress',
+  //     backAction
+  //   );
+
+  //   return () => backHandler.remove();
+  // }, []);
 
   return (
     <SafeAreaView style={styles.container}>
@@ -71,7 +89,7 @@ export default function Login() {
             label="Email"
             placeholder="Enter your email"
             value={email}
-            onChangeText={(text) => {
+            onChangeText={(text) => { 
               setEmail(text);
               setError("");
             }}

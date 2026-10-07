@@ -1,6 +1,6 @@
 import { Feather, Octicons } from '@expo/vector-icons';
 import { useRouter } from 'expo-router';
-import { Dimensions, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { Text, TouchableOpacity, View } from 'react-native';
 import styles from '../../components/stylesIn';
 
 export default function MenuScreen() {
@@ -14,7 +14,8 @@ export default function MenuScreen() {
     <View style={styles.menuOverlay}>
       <TouchableOpacity 
         style={styles.backdrop} 
-        onPress={() => router.back()} 
+        onPress={() => router.back()}
+        activeOpacity={1} 
       />
 
       <View style={styles.menuContainer}>
@@ -35,10 +36,13 @@ export default function MenuScreen() {
               <Text style={styles.userEmail}>inJob@email.com</Text>
             </View>
           </View>
-          
 
+          <View style={styles.menuActsContainer}>
+            {/* pwede ma butangan ug mga item for the MENU */}
+          </View>
+          
           <View style={styles.menuFooter}>
-            <TouchableOpacity style={styles.logoutButton} onPress={handleLogout}>
+            <TouchableOpacity style={styles.logoutButton} onPress={handleLogout} activeOpacity={0.7}>
               <Text style={styles.logoutText}>Log Out</Text>
             </TouchableOpacity>
           </View>

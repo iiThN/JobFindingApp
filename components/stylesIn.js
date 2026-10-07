@@ -80,6 +80,14 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
 
+  menuActsContainer: {
+    flex: 1,
+    backgroundColor: 'green',
+    justifyContent: 'flex-start',
+    alignItems: 'center',
+    flexDirection: 'column',
+  },
+
   menuFooter: {
     padding: 16,
   },
