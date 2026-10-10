@@ -1,27 +1,23 @@
-import { useState, useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import {
   Alert,
-  Text,
-  TouchableOpacity,
-  View,
   KeyboardAvoidingView,
-  ScrollView
-
+  ScrollView,
+  Text,
+  View,
 } from "react-native";
 
-import { useLocalSearchParams } from 'expo-router';
-
-import { router, useNavigation } from "expo-router";
+import { router, useLocalSearchParams, useNavigation } from "expo-router";
 import { SafeAreaView } from "react-native-safe-area-context";
 
+import FormButton from "../components/Button";
 import InputField from "../components/InputField";
 import styles from "../components/styles";
-import FormButton from "../components/Button";
 
+import { useAuth } from "../context/AuthContext";
 import { validateRegister } from "../validations/authValidation";
 
 export default function Register() {
-
   const navigation = useNavigation();
   const { role } = useLocalSearchParams();
 
@@ -31,6 +27,7 @@ export default function Register() {
   const [confirmPassword, setConfirmPassword] = useState("");
   const [error, setError] = useState("");
 
+  const { register } = useAuth();
   const isIntentionalNavigation = useRef(false);
 
   const handleRegister = () => {
@@ -48,7 +45,19 @@ export default function Register() {
 
     setError("");
 
-    if (role === 'Job Seeker') {
+    if (role === "Job Seeker") {
+      const result = register({
+        name,
+        email,
+        password,
+        role,
+      });
+
+      if (!result.success) {
+        setError(result.message);
+        return;
+      }
+
       Alert.alert("Success", "Registration successful!", [
         {
           text: "OK",
@@ -60,22 +69,23 @@ export default function Register() {
       ]);
     }
 
-    if (role === 'Employer') {
+    if (role === "Employer") {
       isIntentionalNavigation.current = true;
+
       router.push({
-        pathname: '/getVerified',
-        params: { 
-          role: role, 
-          name: name, 
-          email: email, 
-          password: password 
-        }
+        pathname: "/getVerified",
+        params: {
+          role,
+          name,
+          email,
+          password,
+        },
       });
     }
   };
 
   useEffect(() => {
-    const unsubscribe = navigation.addListener('beforeRemove', (e) => {
+    const unsubscribe = navigation.addListener("beforeRemove", (e) => {
       if (isIntentionalNavigation.current) {
         return;
       }
@@ -89,7 +99,6 @@ export default function Register() {
           {
             text: "Continue creating account",
             style: "cancel",
-            onPress: () => {}
           },
           {
             text: "Stop creating account",
@@ -103,105 +112,86 @@ export default function Register() {
     });
 
     return unsubscribe;
-  }, [navigation])
+  }, [navigation]);
 
   return (
     <SafeAreaView style={styles.container}>
-      <KeyboardAvoidingView behavior="padding"
-        style={{ flex: 1 }}>
-      <ScrollView
-      contentContainerStyle={{ flexGrow: 1, justifyContent: 'center' }}
-          showsVerticalScrollIndicator={false}>
-      <View style={styles.card}>
-
-        {role === 'Job Seeker' && (
-          <>
+      <KeyboardAvoidingView behavior="padding" style={{ flex: 1 }}>
+        <ScrollView
+          contentContainerStyle={{
+            flexGrow: 1,
+            justifyContent: "center",
+          }}
+          showsVerticalScrollIndicator={false}
+        >
+          <View style={styles.card}>
             <Text style={styles.title}>
-              Join as a Job Seeker
+              {role === "Job Seeker"
+                ? "Join as a Job Seeker"
+                : "Join as an Employer"}
             </Text>
-          </>
-        )}
 
-        {role === 'Employer' && (
-          <>
-            <Text style={styles.title}>
-              Join as an Employer
+            <Text style={styles.subtitle}>
+              Set up your account to start
             </Text>
-          </>
-        )}
-        <Text style={styles.subtitle}>
-          Set up your account to start 
-        </Text>
 
-        <View style={styles.form}>
+            <View style={styles.form}>
+              <InputField
+                label="Name"
+                placeholder="Enter your name"
+                value={name}
+                onChangeText={(text) => {
+                  setName(text);
+                  setError("");
+                }}
+              />
 
-          <InputField
-            label="Name"
-            placeholder="Enter your name"
-            value={name}
-            onChangeText={(text) => {
-              setName(text);
-              setError("");
-            }}
-          />
+              <InputField
+                label="Email"
+                placeholder="Enter your email"
+                value={email}
+                onChangeText={(text) => {
+                  setEmail(text);
+                  setError("");
+                }}
+              />
 
-          <InputField
-            label="Email"
-            placeholder="Enter your email"
-            value={email}
-            onChangeText={(text) => {
-              setEmail(text);
-              setError("");
-            }}
-          />
+              <InputField
+                label="Password"
+                placeholder="Enter your password"
+                value={password}
+                onChangeText={(text) => {
+                  setPassword(text);
+                  setError("");
+                }}
+                secureTextEntry
+              />
 
-          <InputField
-            label="Password"
-            placeholder="Enter your password"
-            value={password}
-            onChangeText={(text) => {
-              setPassword(text);
-              setError("");
-            }}
-            secureTextEntry
-          />
+              <InputField
+                label="Confirm Password"
+                placeholder="Confirm your password"
+                value={confirmPassword}
+                onChangeText={(text) => {
+                  setConfirmPassword(text);
+                  setError("");
+                }}
+                secureTextEntry
+              />
 
-          <InputField
-            label="Confirm Password"
-            placeholder="Confirm your password"
-            value={confirmPassword}
-            onChangeText={(text) => {
-              setConfirmPassword(text);
-              setError("");
-            }}
-            secureTextEntry
-          />
+              {error !== "" && (
+                <Text style={styles.errorText}>{error}</Text>
+              )}
 
-          {error === "" ? null : (
-            <Text style={styles.errorText}>
-              {error}
-            </Text>
-          )}
-
-
-          {role === 'Job Seeker' && (
-            <FormButton
-              btnTitle="Register"
-              onPress={handleRegister}
-            />
-          )}
-
-          {role === 'Employer' && (
-            <FormButton
-            btnTitle="Get Verified"
-            onPress={handleRegister}
-          />
-          )}
-
-        </View>
-      </View>
-      </ScrollView>
-    </KeyboardAvoidingView>
+              <FormButton
+                btnTitle={
+                  role === "Employer" ? "Get Verified" : "Register"
+                }
+                onPress={handleRegister}
+              />
+            </View>
+          </View>
+        </ScrollView>
+      </KeyboardAvoidingView>
     </SafeAreaView>
   );
 }

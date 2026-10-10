@@ -1,34 +1,44 @@
 import { useState } from "react";
+
 import {
   Alert,
+  Image,
+  KeyboardAvoidingView,
+  ScrollView,
   Text,
   TouchableOpacity,
   View,
-  Image,
-  KeyboardAvoidingView,
-  ScrollView
 } from "react-native";
 
 import { router } from "expo-router";
 import { SafeAreaView } from "react-native-safe-area-context";
 
+import FormButton from "../components/Button";
 import InputField from "../components/InputField";
 import styles from "../components/styles";
-import FormButton from "../components/Button";
 
+import { useAuth } from "../context/AuthContext";
 import { validateLogin } from "../validations/authValidation";
 
 export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-
   const [error, setError] = useState("");
+
+  const { login } = useAuth();
 
   const handleLogin = () => {
     const validationError = validateLogin(email, password);
 
     if (validationError) {
       setError(validationError);
+      return;
+    }
+
+    const result = login(email, password);
+
+    if (!result.success) {
+      setError(result.message);
       return;
     }
 
@@ -44,93 +54,86 @@ export default function Login() {
 
   return (
     <SafeAreaView style={styles.container}>
-    <KeyboardAvoidingView behavior="padding"
-      style={{ flex: 1 }}
-    >
-    <ScrollView
-      contentContainerStyle={{ flexGrow: 1, justifyContent: 'center' }}
-      showsVerticalScrollIndicator={false}
-    >
-      <Image 
-        source={require('../assets/images/inJob-horizontal-dark.png')} 
-        style={styles.textLogo} 
-      />
-      <View style={styles.card}>
-
-        <Text style={styles.title}>
-          Welcome Back
-        </Text>
-
-        <Text style={styles.subtitle}>
-          Login to your account to continue
-        </Text>
-
-        <View style={styles.form}>
-
-          <InputField
-            label="Email"
-            placeholder="Enter your email"
-            value={email}
-            onChangeText={(text) => {
-              setEmail(text);
-              setError("");
-            }}
+      <KeyboardAvoidingView behavior="padding" style={{ flex: 1 }}>
+        <ScrollView
+          contentContainerStyle={{
+            flexGrow: 1,
+            justifyContent: "center",
+          }}
+          showsVerticalScrollIndicator={false}
+        >
+          <Image
+            source={require("../assets/images/inJob-horizontal-dark.png")}
+            style={styles.textLogo}
           />
 
-          <InputField
-            label="Password"
-            placeholder="Enter your password"
-            value={password}
-            onChangeText={(text) => {
-              setPassword(text);
-              setError("");
-            }}
-            secureTextEntry
-          />
+          <View style={styles.card}>
+            <Text style={styles.title}>Welcome Back</Text>
 
-          <TouchableOpacity
-            style={styles.forgotButton}
-            onPress={() =>
-              Alert.alert(
-                "Forgot Password",
-                "This feature is coming soon."
-              )
-            }
-          >
-            <Text style={styles.forgotText}>
-              Forgot Password?
+            <Text style={styles.subtitle}>
+              Login to your account to continue
             </Text>
-          </TouchableOpacity>
 
-          {error === "" ? null : (
-            <Text style={styles.errorText}>
-              {error}
-            </Text>
-          )}
+            <View style={styles.form}>
+              <InputField
+                label="Email"
+                placeholder="Enter your email"
+                value={email}
+                onChangeText={(text) => {
+                  setEmail(text);
+                  setError("");
+                }}
+              />
 
-          <FormButton
-            btnTitle="Login"
-            onPress={handleLogin}
-          />
+              <InputField
+                label="Password"
+                placeholder="Enter your password"
+                value={password}
+                onChangeText={(text) => {
+                  setPassword(text);
+                  setError("");
+                }}
+                secureTextEntry
+              />
 
-        </View>
+              <TouchableOpacity
+                style={styles.forgotButton}
+                onPress={() =>
+                  Alert.alert(
+                    "Forgot Password",
+                    "This feature is coming soon."
+                  )
+                }
+              >
+                <Text style={styles.forgotText}>
+                  Forgot Password?
+                </Text>
+              </TouchableOpacity>
 
-        <View style={styles.registerContainer}>
+              {error !== "" && (
+                <Text style={styles.errorText}>{error}</Text>
+              )}
 
-          <Text style={styles.registerText}>
-            Don't have an account?
-          </Text>
+              <FormButton
+                btnTitle="Login"
+                onPress={handleLogin}
+              />
+            </View>
 
-          <TouchableOpacity
-            onPress={() => router.push("/selectRole")}>
-            <Text style={styles.registerLink}>
-              Register
-            </Text>
-          </TouchableOpacity>
-        </View>
-      </View>
-    </ScrollView>
-    </KeyboardAvoidingView>
+            <View style={styles.registerContainer}>
+              <Text style={styles.registerText}>
+                Don't have an account?
+              </Text>
+
+              <TouchableOpacity
+                onPress={() => router.push("/selectRole")}
+              >
+                <Text style={styles.registerLink}>Register</Text>
+              </TouchableOpacity>
+            </View>
+          </View>
+        </ScrollView>
+      </KeyboardAvoidingView>
     </SafeAreaView>
   );
 }
