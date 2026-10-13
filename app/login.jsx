@@ -1,12 +1,12 @@
-import React, { useState, useEffect} from "react";
+import { useState, useEffect } from "react";
 import {
   Alert,
-  Image,
   KeyboardAvoidingView,
   ScrollView,
   Text,
   TouchableOpacity,
   View,
+  Image,
   BackHandler
 } from "react-native";
 
@@ -17,19 +17,28 @@ import FormButton from "../components/Button";
 import InputField from "../components/InputField";
 import styles from "../components/styles";
 
+import { useAuth } from "../context/AuthContext";
 import { validateLogin } from "../validations/authValidation";
 
 export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-
   const [error, setError] = useState("");
+
+  const { login } = useAuth();
 
   const handleLogin = () => {
     const validationError = validateLogin(email, password);
 
     if (validationError) {
       setError(validationError);
+      return;
+    }
+
+    const result = login(email, password);
+
+    if (!result.success) {
+      setError(result.message);
       return;
     }
 
@@ -62,8 +71,7 @@ export default function Login() {
 
   return (
     <SafeAreaView style={styles.container}>
-    <KeyboardAvoidingView behavior="padding"
-      style={{ flex: 1 }}
+    <KeyboardAvoidingView behavior="padding" style={{ flex: 1 }}
     >
     <ScrollView
       contentContainerStyle={{ flexGrow: 1, justifyContent: 'center' }}
@@ -79,9 +87,9 @@ export default function Login() {
           Welcome Back
         </Text>
 
-        <Text style={styles.subtitle}>
-          Login to your account to continue
-        </Text>
+            <Text style={styles.subtitle}>
+              Login to your account to continue
+            </Text>
 
         <View style={styles.form}>
 
@@ -89,66 +97,61 @@ export default function Login() {
             label="Email"
             placeholder="Enter your email"
             value={email}
-            onChangeText={(text) => { 
+            onChangeText={(text) => {
               setEmail(text);
               setError("");
             }}
           />
 
-          <InputField
-            label="Password"
-            placeholder="Enter your password"
-            value={password}
-            onChangeText={(text) => {
-              setPassword(text);
-              setError("");
-            }}
-            secureTextEntry
-          />
+              <InputField
+                label="Password"
+                placeholder="Enter your password"
+                value={password}
+                onChangeText={(text) => {
+                  setPassword(text);
+                  setError("");
+                }}
+                secureTextEntry
+              />
 
-          <TouchableOpacity
-            style={styles.forgotButton}
-            onPress={() =>
-              Alert.alert(
-                "Forgot Password",
-                "This feature is coming soon."
-              )
-            }
-          >
-            <Text style={styles.forgotText}>
-              Forgot Password?
-            </Text>
-          </TouchableOpacity>
+              <TouchableOpacity
+                style={styles.forgotButton}
+                onPress={() =>
+                  Alert.alert(
+                    "Forgot Password",
+                    "This feature is coming soon."
+                  )
+                }
+              >
+                <Text style={styles.forgotText}>
+                  Forgot Password?
+                </Text>
+              </TouchableOpacity>
 
-          {error === "" ? null : (
-            <Text style={styles.errorText}>
-              {error}
-            </Text>
-          )}
+              {error !== "" && (
+                <Text style={styles.errorText}>{error}</Text>
+              )}
 
-          <FormButton
-            btnTitle="Login"
-            onPress={handleLogin}
-          />
+              <FormButton
+                btnTitle="Login"
+                onPress={handleLogin}
+              />
+            </View>
 
-        </View>
+            <View style={styles.registerContainer}>
+              <Text style={styles.registerText}>
+                Don't have an account?
+              </Text>
 
-        <View style={styles.registerContainer}>
-
-          <Text style={styles.registerText}>
-            Don't have an account?
-          </Text>
-
-          <TouchableOpacity
-            onPress={() => router.push("/selectRole")}>
-            <Text style={styles.registerLink}>
-              Register
-            </Text>
-          </TouchableOpacity>
-        </View>
-      </View>
-    </ScrollView>
-    </KeyboardAvoidingView>
+              <TouchableOpacity
+                onPress={() => router.push("/selectRole")}
+              >
+                <Text style={styles.registerLink}>Register</Text>
+              </TouchableOpacity>
+            </View>
+          </View>
+        </ScrollView>
+      </KeyboardAvoidingView>
     </SafeAreaView>
   );
 }
