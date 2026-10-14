@@ -4,7 +4,7 @@ import {
   TouchableOpacity,
   View
 } from "react-native";
-import RoleCard from "../components/RoleCard";
+import RoleCard from "../components/Cards";
 
 import { router } from "expo-router";
 import { SafeAreaView } from "react-native-safe-area-context";
@@ -17,7 +17,6 @@ export default function SelectRole(){
   return(
     <SafeAreaView style={styles.container}>
       <View style={styles.card}>
-
         <Text style={styles.title}>
           Choose Your Role
         </Text>
@@ -42,7 +41,7 @@ export default function SelectRole(){
             iconName="account-tie"
             iconSize={34}
             title="Employer"
-            subtitle="Post Job Openings and accept Applicants"
+            subtitle="Post Job Openings and Accept Applicants"
             onPress={() => router.push({
               pathname: '/register',
               params: { role: 'Employer' }
