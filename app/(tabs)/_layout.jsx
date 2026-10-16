@@ -1,90 +1,105 @@
-import { MaterialCommunityIcons, Octicons } from '@expo/vector-icons';
-import { Tabs } from 'expo-router';
-import { TouchableOpacity } from 'react-native';
+
+import { MaterialCommunityIcons, Octicons } from "@expo/vector-icons";
+import { Tabs } from "expo-router";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 export default function TabLayout() {
+  const insets = useSafeAreaInsets();
+
+  // para dili kaayo close sa built-in navigation sa phone.
+  const bottomSpace = Math.max(insets.bottom, 12);
+
   return (
     <Tabs
       screenOptions={{
         headerShown: false,
-        statusBarStyle: 'light',
-        tabBarActiveTintColor: '#2623d3',
-        tabBarInactiveTintColor: '#9098a3',        
-        tabBarButton: (props) => (
-          <TouchableOpacity
-            {...props}
-            activeOpacity={1}
-            android_ripple={{ color: 'transparent' }}
-          />
-        ),
-        tabBarStyle: {
-          position: 'absolute',
-          bottom: 0,
-          left: 0,
-          right: 0,
-          paddingTop: 8,
-          height: 60,
-          backgroundColor: '#FFFFFF',
-          borderTopWidth: 1,
-          borderTopColor: '#E2E8F0',
-          elevation: 10,
-          shadowColor: '#000',
-          shadowOffset: { width: 0, height: -3 },
-          shadowOpacity: 0.05,
-          shadowRadius: 4,
-          zIndex: 100,
 
+        tabBarActiveTintColor: "#2623D3",
+        tabBarInactiveTintColor: "#8993A8",
+
+        tabBarShowLabel: true,
+
+        tabBarLabelStyle: {
+          fontSize: 11,
+          fontWeight: "600",
+          marginTop: 3,
         },
+
+        tabBarStyle: {
+          backgroundColor: "#FFFFFF",
+          borderTopColor: "#EEF0F8",
+          borderTopWidth: 1,
+          height: 58 + bottomSpace,
+          paddingTop: 8,
+          paddingBottom: bottomSpace,
+          elevation: 8,
+        },
+
         tabBarItemStyle: {
-          height: 60,
+          paddingVertical: 2,
         },
-        tabBarShowLabel: false, 
-        animation: 'none',
+
+        animation: "none",
       }}
     >
+      {/* Home */}
       <Tabs.Screen
         name="index"
         options={{
-          tabBarIcon: ({ focused, color }) => (
+          title: "Home",
+          tabBarIcon: ({ color, focused }) => (
             <Octicons
-              name={focused ? 'home-fill' : 'home'}
-              size={24}
+              name={focused ? "home-fill" : "home"}
+              size={23}
               color={color}
             />
           ),
         }}
       />
-      <Tabs.Screen
-        name="findJob"
-        options={{
-          tabBarIcon: ({ focused, color }) => (
-            <MaterialCommunityIcons
-              name={focused ? 'briefcase-search' : 'briefcase-search-outline'}
-              size={27}
-              color={color}
-            />
-          ),
-        }}
-      />
+
+      {/* Applications */}
       <Tabs.Screen
         name="jobApps"
         options={{
-          tabBarIcon: ({ focused, color }) => (
+          title: "Applications",
+          tabBarIcon: ({ color, focused }) => (
             <MaterialCommunityIcons
-              name={focused ? 'file-document-check' : 'file-document-check-outline'}
-              size={26}
+              name={
+                focused
+                  ? "file-document"
+                  : "file-document-outline"
+              }
+              size={24}
               color={color}
             />
           ),
         }}
       />
+
+      {/* Saved */}
+      <Tabs.Screen
+        name="findJob"
+        options={{
+          title: "Saved",
+          tabBarIcon: ({ color, focused }) => (
+            <MaterialCommunityIcons
+              name={focused ? "bookmark" : "bookmark-outline"}
+              size={24}
+              color={color}
+            />
+          ),
+        }}
+      />
+
+      {/* Profile */}
       <Tabs.Screen
         name="profile"
         options={{
-          tabBarIcon: ({ focused, color }) => (
+          title: "Profile",
+          tabBarIcon: ({ color, focused }) => (
             <Octicons
-              name={focused ? 'person-fill' : 'person'}
-              size={24}
+              name={focused ? "person-fill" : "person"}
+              size={23}
               color={color}
             />
           ),
