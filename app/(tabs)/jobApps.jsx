@@ -1,6 +1,6 @@
-import { ScrollView, View } from 'react-native';
+import { ScrollView, Text, View } from 'react-native';
 import { SafeAreaView } from "react-native-safe-area-context";
-import BottomNav, { TopNav } from '../../components/Navigations';
+import { TopNav } from '../../components/Navigations';
 import styles from "../../components/stylesIn";
 
 export default function JobApps() {
@@ -11,7 +11,7 @@ export default function JobApps() {
         <ScrollView 
           contentContainerStyle={styles.scrollContent}
           showsVerticalScrollIndicator={false}>
-
+            <Text style={styles.title}>Job Applications</Text>
         </ScrollView>
       </SafeAreaView>
     </View>
