@@ -57,7 +57,9 @@ export default function RootLayout() {
             headerShown: false,
           }}
         />
+        
         <Stack.Screen name="details/[id]" options={{ headerShown: false }} />
+
         <Stack.Screen
           name="drawer/menu"
           options={{

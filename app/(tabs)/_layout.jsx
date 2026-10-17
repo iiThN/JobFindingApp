@@ -1,19 +1,19 @@
 
 import { MaterialCommunityIcons, Octicons } from "@expo/vector-icons";
 import { Tabs } from "expo-router";
+import { Pressable } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 export default function TabLayout() {
   const insets = useSafeAreaInsets();
 
-  // para dili kaayo close sa built-in navigation sa phone.
   const bottomSpace = Math.max(insets.bottom, 12);
 
   return (
     <Tabs
+      
       screenOptions={{
         headerShown: false,
-
         tabBarActiveTintColor: "#2623D3",
         tabBarInactiveTintColor: "#8993A8",
 
@@ -40,6 +40,13 @@ export default function TabLayout() {
         },
 
         animation: "none",
+
+        tabBarButton: (props) => (
+          <Pressable
+            {...props}
+            android_ripple={{ color: 'transparent' }}
+          />
+        ),
       }}
     >
       {/* Home */}
@@ -78,7 +85,7 @@ export default function TabLayout() {
 
       {/* Saved */}
       <Tabs.Screen
-        name="findJob"
+        name="saved"
         options={{
           title: "Saved",
           tabBarIcon: ({ color, focused }) => (
