@@ -1,7 +1,7 @@
 import { ScrollView, View } from 'react-native';
 import { SafeAreaView } from "react-native-safe-area-context";
-import { TopNav } from '../../components/Navigations';
-import styles from "../../components/stylesIn";
+import { TopNav } from '../../../components/Navigations';
+import styles from "../../../components/stylesIn";
 
 export default function FindJob() {
   return (

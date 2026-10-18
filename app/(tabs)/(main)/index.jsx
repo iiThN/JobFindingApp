@@ -9,12 +9,12 @@ import {
   View
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { TopNav } from "../../components/Navigations";
+import { TopNav } from "../../../components/Navigations";
 
-import JobCard from "../../components/JobCard";
-import styles from "../../components/stylesIn";
-import { useAuth } from "../../context/AuthContext";
-import jobs from "../../data/jobs";
+import JobCard from "../../../components/JobCard";
+import styles from "../../../components/stylesIn";
+import { useAuth } from "../../../context/AuthContext";
+import jobs from "../../../data/jobs";
 
 export default function HomePage() {
   const router = useRouter();

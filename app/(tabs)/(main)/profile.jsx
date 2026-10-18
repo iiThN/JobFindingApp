@@ -8,9 +8,9 @@ import {
   View,
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { TopNav } from "../../components/Navigations";
-import styles from "../../components/stylesIn";
-import { useAuth } from "../../context/AuthContext";
+import { TopNav } from "../../../components/Navigations";
+import styles from "../../../components/stylesIn";
+import { useAuth } from "../../../context/AuthContext";
 
 /* ---------- Menus per role ---------- */
 
