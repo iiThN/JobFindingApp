@@ -1,7 +1,7 @@
-import { StyleSheet, TouchableOpacity, View, Image } from 'react-native';
+import { Image, StyleSheet, TouchableOpacity, View } from 'react-native';
 
-import { MaterialCommunityIcons, Octicons, Feather, Entypo } from '@expo/vector-icons';
-import { usePathname, useRouter } from 'expo-router';
+import { Feather, Octicons } from '@expo/vector-icons';
+import { useRouter } from 'expo-router';
 
 export function TopNav() {
   const router = useRouter();
@@ -16,32 +16,16 @@ export function TopNav() {
       size: 28,
     },
     { 
-      type: 'image',
-      source: require('../assets/images/inJob-horizontal-light.png'), 
-    },
-    { 
       route: '/notifications', 
       library: Octicons,
       icon: 'bell-fill', 
-      size: 22,
+      size: 21,
     }
   ];
 
   return (
     <View style={styles.topNavContainer}>
       {TopNavItems.map((item, index) => {
-        if (item.type === 'image') {
-          return (
-            <View key={index} style={styles.topNavItem}>
-              <Image 
-                source={item.source} 
-                style={styles.logoImg} 
-                resizeMode="contain" 
-              />
-            </View>
-          );
-        }
-
         const IconComponent = item.library;
         return (
           <TouchableOpacity
@@ -53,7 +37,7 @@ export function TopNav() {
             <IconComponent
               name={item.icon}
               size={item.size}
-              color="#ffffff"
+              color="#111C4B"
             />
           </TouchableOpacity>
         );
@@ -66,8 +50,7 @@ const styles = StyleSheet.create({
 
   topNavContainer: {
     width: '100%',
-    paddingTop: 34,
-    backgroundColor: '#2623D3',
+    backgroundColor: '#F6F8FF',
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',

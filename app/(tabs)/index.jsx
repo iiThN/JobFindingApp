@@ -33,7 +33,6 @@ export default function HomePage() {
   return (
   <SafeAreaView style={styles.homeContainer} edges={["top"]}>
     <TopNav />
-
       <ScrollView
         showsVerticalScrollIndicator={false}
         contentContainerStyle={styles.homeContent}
@@ -53,17 +52,6 @@ export default function HomePage() {
               Find the right job for your next chapter.
             </Text>
           </View>
-
-          <TouchableOpacity
-            style={styles.homeBell}
-            accessibilityLabel="Notifications (coming soon)"
-          >
-            <Feather
-              name="bell"
-              size={21}
-              color="#152354"
-            />
-          </TouchableOpacity>
         </View>
 
         {/* Search UI pa lang ni, walay function. */}
@@ -79,7 +67,7 @@ export default function HomePage() {
               style={styles.homeSearchInput}
               placeholder="Job title, skill or company"
               placeholderTextColor="#9299AB"
-              editable={false}
+              editable={true}
             />
           </View>
 

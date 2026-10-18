@@ -6,8 +6,9 @@ import styles from "../../components/stylesIn";
 export default function JobApps() {
   return (
     <View style={styles.container}>
-      <TopNav/>
-      <SafeAreaView>
+      
+      <SafeAreaView style={styles.homeContainer} edges={["top"]}>
+        <TopNav />
         <ScrollView 
           contentContainerStyle={styles.scrollContent}
           showsVerticalScrollIndicator={false}>

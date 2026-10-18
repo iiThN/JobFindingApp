@@ -67,24 +67,16 @@ function InfoRow({ icon, label, value }) {
 
 function MenuList({ items, onPress }) {
   return (
-    <View style={local.menuCard}>
-      {items.map((item, i) => (
-        <TouchableOpacity
-          key={item.label}
-          style={[local.row, i < items.length - 1 && local.rowBorder]}
-          onPress={() => onPress(item.label)}
-          activeOpacity={0.7}
-        >
-          <View style={local.rowIcon}>
-            <Feather name={item.icon} size={19} color="#2623D3" />
-          </View>
-          <View style={{ flex: 1 }}>
-            <Text style={local.rowLabel}>{item.label}</Text>
-            <Text style={local.rowHint}>{item.hint}</Text>
-          </View>
-          <Feather name="chevron-right" size={20} color="#B6BCCD" />
-        </TouchableOpacity>
-      ))}
+    <View style={styles.container}>
+      
+      <SafeAreaView style={styles.homeContainer} edges={["top"]}>
+        <TopNav />
+        <ScrollView 
+          contentContainerStyle={styles.scrollContent}
+          showsVerticalScrollIndicator={false}>
+
+        </ScrollView>
+      </SafeAreaView>
     </View>
   );
 }
