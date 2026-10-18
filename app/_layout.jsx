@@ -1,4 +1,5 @@
 import { Stack } from "expo-router";
+import "react-native-gesture-handler";
 import { ApplicationsProvider } from "../context/ApplicationsContext";
 import { AuthProvider } from "../context/AuthContext";
 
@@ -12,12 +13,7 @@ export default function RootLayout() {
         statusBarStyle: 'dark', 
       }}
       >
-        <Stack.Screen
-          name="(tabs)"
-          options={{
-            headerShown: false,
-          }}
-        />
+
         <Stack.Screen
           name="login"
           options={{
@@ -46,6 +42,13 @@ export default function RootLayout() {
         />
 
         <Stack.Screen
+          name="(tabs)"
+          options={{
+            headerShown: false,
+          }}
+        />
+
+        <Stack.Screen
           name="getVerified"
           options={{
             headerShown: true,
@@ -61,14 +64,6 @@ export default function RootLayout() {
 
         
         <Stack.Screen name="details/[id]" options={{ headerShown: false }} />
-
-        <Stack.Screen
-          name="drawer/menu"
-          options={{
-            headerShown: false,
-            
-          }}
-        />
       </Stack>
       </ApplicationsProvider>
     </AuthProvider>
