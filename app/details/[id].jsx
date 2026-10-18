@@ -10,31 +10,12 @@ import {
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
-import { Alert } from "react-native"; // add to your react-native import
 import styles from "../../components/stylesIn";
-import { useApplications } from "../../context/ApplicationsContext";
 import jobs from "../../data/jobs";
 
 export default function JobDetails() {
   const { id } = useLocalSearchParams();
   const router = useRouter();
-
-  const { hasApplied, applyToJob } = useApplications();
-  const applied = hasApplied(id);
-
-  const handleApply = () => {
-  const result = applyToJob(job.id);
-
-  if (!result.success) {
-    Alert.alert("Already applied", result.message);
-    return;
-  }
-
-  Alert.alert("Application sent", "You can track it in the Applications tab.", [
-    { text: "Stay here" },
-    { text: "View applications", onPress: () => router.navigate("/jobApps") },
-  ]);
-};
 
   // gamit ang ID sa pagsearch sa jobs nga idisplay.
   const job = jobs.find((item) => String(item.id) === String(id));
@@ -195,13 +176,11 @@ export default function JobDetails() {
       {job && (
         <View style={styles.detailsFooter}>
           <TouchableOpacity
-            style={[styles.detailsApply, applied && { backgroundColor: "#A1AAC0" }]}
+            style={styles.detailsApply}
             activeOpacity={0.8}
-            disabled={applied}
-            onPress={handleApply}
           >
             <Text style={styles.detailsApplyText}>
-              {applied ? "Applied" : "Apply Now"}
+              Apply Now
             </Text>
           </TouchableOpacity>
         </View>

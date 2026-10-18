@@ -51,18 +51,18 @@ export default function InputField({
 
 const styles = StyleSheet.create({
   container: {
-    marginBottom: 18,
+    marginBottom: 0,
   },
 
   label: {
-    fontSize: 14,
+    fontSize: 12,
     fontWeight: "600",
     color: "#333333",
-    marginBottom: 8,
+    marginBottom: 6,
   },
 
   inputContainer: {
-    height: 50,
+    height: 46,
     borderWidth: 1,
     borderColor: "#D9DDE3",
     borderRadius: 10,
@@ -75,7 +75,7 @@ const styles = StyleSheet.create({
     flex: 1,
     height: "100%",
     paddingHorizontal: 15,
-    fontSize: 15,
+    fontSize: 14,
     color: "#222222",
   },
 
